@@ -1,22 +1,5 @@
 #include <stdio.h>
-
-typedef struct {
-    int length;
-    int* value;
-} Vector;
-
-void printVector(Vector* vec) {
-    int i;
-    printf("[");
-    for (i = 0; i < vec->length - 1; i++) {
-        printf("%3d,", vec->value[i]);
-    }
-    if (vec->length > 0) {
-        printf("%3d", vec->value[i]);
-    }
-    printf("]\n");
-    return;
-}
+#include "vector.h"
 
 int main(int argc, const char *argv[])
 {
