@@ -14,3 +14,19 @@ void printVector(Vector* vec) {
     return;
 }
 
+#if TESTING
+int main(int argc, const char *argv[])
+{
+    Vector a;
+    a.length = 6;
+    int aa[6] = {1, 2, 5, 23, 10, 4};
+    a.value = aa;
+
+    Vector b;
+    b.length = 0;
+
+    printVector(&a);
+    printVector(&b);
+    return 0;
+}
+#endif /* testing */
