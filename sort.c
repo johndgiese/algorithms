@@ -75,7 +75,7 @@ void mergeSort(Vector* vec) {
 
 int main(int argc, const char *argv[]) {
 
-    /*Vector a;
+    Vector a;
     a.length = 6;
     int aa[6] = {11, 2, 5, 23, 10, 4};
     a.value = aa;
@@ -87,9 +87,9 @@ int main(int argc, const char *argv[]) {
 
     bool equal;
     equal = areEqualVectors(&a, &b);
-    printf("%s\n", equal ? "equal" : "not equal");*/
+    printf("%s\n", equal ? "equal" : "not equal");
 
-    Vector c = *randVector(10);
+    Vector c = *randVector(10, 3, 7);
 
     printf("initial vector:\n");
     printVector(&c);
