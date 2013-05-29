@@ -13,6 +13,6 @@ Vector* emptyVector(int length);
 Vector* newVector(int length, int initialValue);
 Vector* onesVector(int length);
 Vector* zerosVector(int length);
-Vector* randVector(int length);
+Vector* randVector(int length, int low, int high);
 Vector* copyVector(Vector* old);
 

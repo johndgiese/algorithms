@@ -62,12 +62,12 @@ Vector* zerosVector(int length) {
     return newVector(length, 0);
 }
 
-Vector* randVector(int length) {
+Vector* randVector(int length, int low, int high) {
     Vector* vec = emptyVector(length);
     srand(time(NULL));
     int i;
     for (i = 0; i < length; i++) {
-        vec->value[i] = rand();
+        vec->value[i] = low + rand() % (high - low + 1);
     }
     return vec;
 }
