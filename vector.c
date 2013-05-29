@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 #include "vector.h"
+#include "math.h"
 
 void printVector(Vector* vec) {
     int i;
@@ -30,10 +32,15 @@ bool areEqualVectors(Vector *a, Vector *b) {
     }
 }
 
-Vector* newVector(int length, int initialValue) {
+Vector* emptyVector(int length) {
     Vector* vec = (Vector*)malloc(sizeof(Vector));
     vec->length = length;
     vec->value = (int*)malloc(length*sizeof(int));
+    return vec;
+}
+
+Vector* newVector(int length, int initialValue) {
+    Vector* vec = emptyVector(length);
     int i;
     for (i = 0; i < length; i++) {
         vec->value[i] = initialValue;
@@ -55,10 +62,18 @@ Vector* zerosVector(int length) {
     return newVector(length, 0);
 }
 
+Vector* randVector(int length) {
+    Vector* vec = emptyVector(length);
+    srand(time(NULL));
+    int i;
+    for (i = 0; i < length; i++) {
+        vec->value[i] = rand();
+    }
+    return vec;
+}
+
 Vector* copyVector(Vector* old) {
-    Vector* new = (Vector*)malloc(sizeof(Vector));
-    new->length = old->length;
-    new->value = (int*)malloc(old->length*sizeof(int));
+    Vector* new = emptyVector(old->length);
     int i;
     for (i = 0; i < old->length; i++) {
         new->value[i] = old->value[i];
