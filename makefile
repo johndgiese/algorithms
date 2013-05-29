@@ -26,7 +26,7 @@ LFLAGS =
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname 
 #   option, something like (this will link in libmylib.so and libm.so:
 # LIBS = -lmylib -lm
-LIBS = 
+LIBS = -lm
 
 # define the C source files
 SRCS = sort.c vector.c
@@ -65,9 +65,15 @@ $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-	$(RM) *.o *~ $(MAIN)
+	$(RM) *.o *~ $(MAIN) $(TEST)
 
 depend: $(SRCS)
 	makedepend $(INCLUDES) $^
+
+TEST = test
+TEST_SRCS = vector.c vector_test.c
+TEST_OBJS = $(TEST_SRCS:.c=.o)
+$(TEST): $(TEST_OBJS)
+	$(CC) $(CFLAGS) -o $(TEST) $(TEST_OBJS) $(LFLAGS) $(LIBS)
 
 # DO NOT DELETE THIS LINE -- make depend needs it

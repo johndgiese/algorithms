@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "vector.h"
 
 void printVector(Vector* vec) {
@@ -29,36 +30,39 @@ bool areEqualVectors(Vector *a, Vector *b) {
     }
 }
 
-#if TESTING
-int main(int argc, const char *argv[]) {
-    Vector a;
-    a.length = 6;
-    int aa[6] = {1, 2, 5, 23, 10, 4};
-    a.value = aa;
-
-    Vector b;
-    b.length = 2;
-    int bb[2] = {3, 5};
-    b.value = bb;
-
-    Vector c;
-    c.length = 6;
-    int cc[6] = {1, 2, 5, 24, 10, 4};
-    c.value = cc;
-
-    printVector(&a);
-    printVector(&b);
-    printVector(&c);
-
-    bool areEqual;
-    areEqual = areEqualVectors(&a, &b);
-    printf("A and B are %sequal.\n", areEqual ? "" : "not ");
-
-    areEqual = areEqualVectors(&a, &c);
-    printf("A and C are %sequal.\n", areEqual ? "" : "not ");
-
-    areEqual = areEqualVectors(&c, &c);
-    printf("C and C are %sequal.\n", areEqual ? "" : "not ");
-    return 0;
+Vector* newVector(int length, int initialValue) {
+    Vector* vec = (Vector*)malloc(sizeof(Vector));
+    vec->length = length;
+    vec->value = (int*)malloc(length*sizeof(int));
+    int i;
+    for (i = 0; i < length; i++) {
+        vec->value[i] = initialValue;
+    }
+    return vec;
 }
-#endif /* testing */
+
+void freeVector(Vector* vec) {
+    free(vec->value);
+    free(vec);
+    return;
+}
+
+Vector* onesVector(int length) {
+    return newVector(length, 1);
+}
+
+Vector* zerosVector(int length) {
+    return newVector(length, 0);
+}
+
+Vector* copyVector(Vector* old) {
+    Vector* new = (Vector*)malloc(sizeof(Vector));
+    new->length = old->length;
+    new->value = (int*)malloc(old->length*sizeof(int));
+    int i;
+    for (i = 0; i < old->length; i++) {
+        new->value[i] = old->value[i];
+    }
+    return new;
+}
+
