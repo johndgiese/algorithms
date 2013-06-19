@@ -17,36 +17,39 @@ int main(int argc, const char *argv[]) {
     int cc[6] = {1, 2, 5, 24, 10, 4};
     c.value = cc;
 
-    printVector(&a);
-    printVector(&b);
-    printVector(&c);
+    print_vector(&a);
+    print_vector(&b);
+    print_vector(&c);
 
-    bool areEqual;
-    areEqual = areEqualVectors(&a, &b);
-    printf("A and B are %sequal.\n", areEqual ? "" : "not ");
+    bool are_equal;
+    are_equal = are_equal_vectors(&a, &b);
+    printf("A and B are %sequal.\n", are_equal ? "" : "not ");
 
-    areEqual = areEqualVectors(&a, &c);
-    printf("A and C are %sequal.\n", areEqual ? "" : "not ");
+    are_equal = are_equal_vectors(&a, &c);
+    printf("A and C are %sequal.\n", are_equal ? "" : "not ");
 
-    areEqual = areEqualVectors(&c, &c);
-    printf("C and C are %sequal.\n", areEqual ? "" : "not ");
+    are_equal = are_equal_vectors(&c, &c);
+    printf("C and C are %sequal.\n", are_equal ? "" : "not ");
 
-    Vector* d = onesVector(4);
-    printVector(d);
+    Vector* d = ones_vector(4);
+    print_vector(d);
+    free_vector(d);
 
-    Vector* e = zerosVector(1);
-    printVector(e);
+    Vector* e = zeros_vector(1);
+    print_vector(e);
+    free_vector(e);
 
-    Vector* f = zerosVector(2);
-    printVector(f);
+    Vector* f = zeros_vector(2);
+    print_vector(f);
+    free_vector(f);
 
-    Vector* g = copyVector(&a);
-    printVector(g);
+    Vector* g = copy_vector(&a);
+    print_vector(g);
+    free_vector(g);
 
-    freeVector(d);
-    freeVector(g);
-    freeVector(f);
-    freeVector(e);
+    Vector* h = linear_vector(4, 10, 2);
+    print_vector(h);
+    free_vector(h);
 
     return 0;
 }

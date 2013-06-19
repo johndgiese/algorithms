@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include "vector.h"
 #include <string.h>
 
-void insertionSort(Vector* vec) {
+#include "vector.h"
+#include "sort.h"
+
+void insertion_sort(Vector* vec) {
     int i;
     for (i = 1; i < vec->length; i++) {
         int key = vec->value[i];
@@ -24,7 +25,7 @@ void insertionSort(Vector* vec) {
     }
 }
 
-Vector* _mergeSort(Vector* vec) {
+Vector* _merge_sort(Vector* vec) {
     if (vec->length <= 1) {
         return vec;
     }
@@ -37,12 +38,12 @@ Vector* _mergeSort(Vector* vec) {
         Vector b;
         b.length = vec->length - division;
         b.value = vec->value + division;
-        Vector* aa = copyVector(&a);
-        Vector* bb = copyVector(&b);
+        Vector* aa = copy_vector(&a);
+        Vector* bb = copy_vector(&b);
 
         // sort each half
-        aa = _mergeSort(aa);
-        bb = _mergeSort(bb);
+        aa = _merge_sort(aa);
+        bb = _merge_sort(bb);
 
         // combine halfs (linear time)
         int i, ib = 0, ia = 0;
@@ -68,34 +69,6 @@ Vector* _mergeSort(Vector* vec) {
     }
 }
 
-void mergeSort(Vector* vec) {
-    vec = _mergeSort(vec);
-}
-
-
-int main(int argc, const char *argv[]) {
-
-    Vector a;
-    a.length = 6;
-    int aa[6] = {11, 2, 5, 23, 10, 4};
-    a.value = aa;
-
-    Vector b;
-    b.length = 6;
-    int bb[6] = {2, 4, 5, 10, 11, 23};
-    b.value = bb;
-
-    bool equal;
-    equal = areEqualVectors(&a, &b);
-    printf("%s\n", equal ? "equal" : "not equal");
-
-    Vector c = *randVector(10, 3, 7);
-
-    printf("initial vector:\n");
-    printVector(&c);
-    printf("after sorting:\n");
-    mergeSort(&c);
-    printVector(&c);
-
-    return 0;
+void merge_sort(Vector* vec) {
+    vec = _merge_sort(vec);
 }

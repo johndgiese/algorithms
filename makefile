@@ -29,7 +29,7 @@ LFLAGS =
 LIBS = -lm
 
 # define the C source files
-SRCS = sort.c vector.c
+SRCS = sort_time.c vector.c sort.c
 
 # define the C object files 
 #

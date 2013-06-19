@@ -4,7 +4,7 @@
 #include "vector.h"
 #include "math.h"
 
-void printVector(Vector* vec) {
+void print_vector(Vector* vec) {
     int i;
     printf("[");
     for (i = 0; i < vec->length - 1; i++) {
@@ -17,7 +17,7 @@ void printVector(Vector* vec) {
     return;
 }
 
-bool areEqualVectors(Vector *a, Vector *b) {
+bool are_equal_vectors(Vector *a, Vector *b) {
     if (a->length == b->length) {
         int i;
         for (i = 0; i < a->length; i++) {
@@ -32,38 +32,50 @@ bool areEqualVectors(Vector *a, Vector *b) {
     }
 }
 
-Vector* emptyVector(int length) {
+Vector* empty_vector(int length) {
     Vector* vec = (Vector*)malloc(sizeof(Vector));
     vec->length = length;
     vec->value = (int*)malloc(length*sizeof(int));
     return vec;
 }
 
-Vector* newVector(int length, int initialValue) {
-    Vector* vec = emptyVector(length);
+Vector* new_vector(int length, int initial_value) {
+    Vector* vec = empty_vector(length);
     int i;
     for (i = 0; i < length; i++) {
-        vec->value[i] = initialValue;
+        vec->value[i] = initial_value;
     }
     return vec;
 }
 
-void freeVector(Vector* vec) {
+void free_vector(Vector* vec) {
     free(vec->value);
     free(vec);
     return;
 }
 
-Vector* onesVector(int length) {
-    return newVector(length, 1);
+Vector* ones_vector(int length) {
+    return new_vector(length, 1);
 }
 
-Vector* zerosVector(int length) {
-    return newVector(length, 0);
+Vector* zeros_vector(int length) {
+    return new_vector(length, 0);
 }
 
-Vector* randVector(int length, int low, int high) {
-    Vector* vec = emptyVector(length);
+Vector* linear_vector(int start, int stop, int jump) {
+    int length = (stop - start)/jump;
+    Vector* vec = empty_vector(length);
+
+    int i;
+    for (i = 0; i < length; i++) {
+        vec->value[i] = start + i*jump;
+    }
+    return vec;
+}
+
+
+Vector* rand_vector(int length, int low, int high) {
+    Vector* vec = empty_vector(length);
     srand(time(NULL));
     int i;
     for (i = 0; i < length; i++) {
@@ -72,8 +84,8 @@ Vector* randVector(int length, int low, int high) {
     return vec;
 }
 
-Vector* copyVector(Vector* old) {
-    Vector* new = emptyVector(old->length);
+Vector* copy_vector(Vector* old) {
+    Vector* new = empty_vector(old->length);
     int i;
     for (i = 0; i < old->length; i++) {
         new->value[i] = old->value[i];
