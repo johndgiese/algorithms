@@ -47,7 +47,7 @@ int main(int argc, const char *argv[]) {
     print_vector(g);
     free_vector(g);
 
-    Vector* h = linear_vector(4, 10, 2);
+    Vector* h = linear_vector(10, 4, -2);
     print_vector(h);
     free_vector(h);
 

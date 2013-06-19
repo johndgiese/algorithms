@@ -3,4 +3,4 @@
 
 typedef enum { false, true } bool;
 
-#endif
+#endif /* !UTIL_H */

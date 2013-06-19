@@ -62,8 +62,8 @@ Vector* zeros_vector(int length) {
     return new_vector(length, 0);
 }
 
-Vector* linear_vector(int start, int stop, int jump) {
-    int length = (stop - start)/jump;
+Vector* linear_vector(int start, int stop_exclusive, int jump) {
+    int length = (stop_exclusive - start)/jump;
     Vector* vec = empty_vector(length);
 
     int i;
